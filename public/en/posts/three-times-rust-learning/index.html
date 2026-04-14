@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="auto">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="noindex, nofollow">
+<title>Rust Unlimited Intro - Three Times Failed | BIT &amp; 42</title>
+<meta name="keywords" content="Rust, Programming">
+<meta name="description" content="Rust Unlimited Intro - Three Times Failed
+Introduction
+Rust, as a modern systems programming language, is renowned for its memory safety and high performance. However, its steep learning curve has discouraged many. This article documents my multiple attempts to learn and abandon Rust, as well as the gains from my latest attempt.
+Why Learn Rust?
+
+Performance &amp; Safety: Memory safety without garbage collection
+Modern Toolchain: Cargo, rustfmt, clippy and other tools are very mature
+Active Community: Rich ecosystem on crates.io
+Job Prospects: More and more companies are hiring Rust developers
+
+Pitfalls on the Learning Path
+1. Ownership
+This is Rust&rsquo;s most unique concept and the biggest barrier.">
+<meta name="author" content="CoderAmedal">
+<link rel="canonical" href="http://localhost:1313/en/posts/three-times-rust-learning/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.css" rel="preload stylesheet" as="style">
+<link rel="icon" href="http://localhost:1313/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
+<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
+<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="http://localhost:1313/en/posts/three-times-rust-learning/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+                color-scheme: dark;
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .toc {
+                background: var(--entry);
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            .list::-webkit-scrollbar-thumb {
+                border-color: var(--code-bg);
+            }
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else if (localStorage.getItem("pref-theme") === "light") {
+       document.querySelector("html").dataset.theme = 'light';
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.querySelector("html").dataset.theme = 'dark';
+    } else {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="http://localhost:1313/" accesskey="h" title="BIT &amp; 42 (Alt + H)">BIT &amp; 42</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                    <ul class="lang-switch"><li>|</li>
+                        <li>
+                            <a href="http://localhost:1313/en/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="http://localhost:1313/archives" title="所有文章">
+                    <span>所有文章</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/search/" title="搜索">
+                    <span>搜索</span>
+                </a>
+            </li>
+            <li>
+                <a href="http://localhost:1313/tags/" title="标签">
+                    <span>标签</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://github.com/CoderAmedal/" title="Github">
+                    <span>Github</span>&nbsp;
+                    <svg fill="none" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round"
+                        stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" height="12" width="12">
+                        <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"></path>
+                        <path d="M15 3h6v6"></path>
+                        <path d="M10 14L21 3"></path>
+                    </svg>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      Rust Unlimited Intro - Three Times Failed
+    </h1>
+    <div class="post-meta"><span title='2026-04-14 00:00:00 +0000 UTC'>2026年4月14日</span>&nbsp;·&nbsp;<span>CoderAmedal</span>
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="rust-unlimited-intro---three-times-failed">Rust Unlimited Intro - Three Times Failed<a hidden class="anchor" aria-hidden="true" href="#rust-unlimited-intro---three-times-failed">#</a></h1>
+<h2 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h2>
+<p>Rust, as a modern systems programming language, is renowned for its memory safety and high performance. However, its steep learning curve has discouraged many. This article documents my multiple attempts to learn and abandon Rust, as well as the gains from my latest attempt.</p>
+<h2 id="why-learn-rust">Why Learn Rust?<a hidden class="anchor" aria-hidden="true" href="#why-learn-rust">#</a></h2>
+<ul>
+<li><strong>Performance &amp; Safety</strong>: Memory safety without garbage collection</li>
+<li><strong>Modern Toolchain</strong>: Cargo, rustfmt, clippy and other tools are very mature</li>
+<li><strong>Active Community</strong>: Rich ecosystem on crates.io</li>
+<li><strong>Job Prospects</strong>: More and more companies are hiring Rust developers</li>
+</ul>
+<h2 id="pitfalls-on-the-learning-path">Pitfalls on the Learning Path<a hidden class="anchor" aria-hidden="true" href="#pitfalls-on-the-learning-path">#</a></h2>
+<h3 id="1-ownership">1. Ownership<a hidden class="anchor" aria-hidden="true" href="#1-ownership">#</a></h3>
+<p>This is Rust&rsquo;s most unique concept and the biggest barrier.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-rust" data-lang="rust"><span style="display:flex;"><span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> s1 <span style="color:#f92672">=</span> String::from(<span style="color:#e6db74">&#34;hello&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> s2 <span style="color:#f92672">=</span> s1; <span style="color:#75715e">// s1 is &#34;moved&#34; here
+</span></span></span><span style="display:flex;"><span>    <span style="color:#75715e">// println!(&#34;{}&#34;, s1); // Compile error!
+</span></span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="2-lifetime">2. Lifetime<a hidden class="anchor" aria-hidden="true" href="#2-lifetime">#</a></h3>
+<p>Lifetime annotations are another difficulty, especially when combining references with structs.</p>
+<h3 id="3-borrowing-rules">3. Borrowing Rules<a hidden class="anchor" aria-hidden="true" href="#3-borrowing-rules">#</a></h3>
+<ul>
+<li>One mutable reference XOR multiple immutable references</li>
+<li>References must always be valid</li>
+</ul>
+<h2 id="recommended-learning-resources">Recommended Learning Resources<a hidden class="anchor" aria-hidden="true" href="#recommended-learning-resources">#</a></h2>
+<ol>
+<li><strong>The Rust Book</strong> - Official beginner book</li>
+<li><strong>Rust By Example</strong> - Learn through examples</li>
+<li><strong>Rustlings</strong> - Interactive exercises</li>
+<li><strong>Exercism Rust Track</strong> - Practice problems</li>
+</ol>
+<h2 id="how-long-can-i-stick-with-it-this-time">How Long Can I Stick With It This Time?<a hidden class="anchor" aria-hidden="true" href="#how-long-can-i-stick-with-it-this-time">#</a></h2>
+<p>Setting a flag, I hope this time I can truly master Rust&rsquo;s core concepts.</p>
+<hr>
+<p><em>To be continued&hellip;</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="http://localhost:1313/tags/rust/">Rust</a></li>
+      <li><a href="http://localhost:1313/tags/programming/">Programming</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>© 2025 Bit &amp; 42. 这是生命、宇宙以及一切的终极版权声明</span> · 
+
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Amedal</a>
+        
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

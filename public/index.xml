@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>BIT &amp; 42</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on BIT &amp; 42</description>
+    <generator>Hugo -- 0.160.1</generator>
+    <language>zh-CN</language>
+    <copyright>2025 Bit &amp;amp; 42. 这是生命、宇宙以及一切的终极版权声明</copyright>
+    <lastBuildDate>Tue, 14 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rust Unlimited Intro - Three Times Failed</title>
+      <link>http://localhost:1313/en/posts/three-times-rust-learning/</link>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/en/posts/three-times-rust-learning/</guid>
+      <description>&lt;h1 id=&#34;rust-unlimited-intro---three-times-failed&#34;&gt;Rust Unlimited Intro - Three Times Failed&lt;/h1&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Rust, as a modern systems programming language, is renowned for its memory safety and high performance. However, its steep learning curve has discouraged many. This article documents my multiple attempts to learn and abandon Rust, as well as the gains from my latest attempt.&lt;/p&gt;
+&lt;h2 id=&#34;why-learn-rust&#34;&gt;Why Learn Rust?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Performance &amp;amp; Safety&lt;/strong&gt;: Memory safety without garbage collection&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Modern Toolchain&lt;/strong&gt;: Cargo, rustfmt, clippy and other tools are very mature&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Active Community&lt;/strong&gt;: Rich ecosystem on crates.io&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Job Prospects&lt;/strong&gt;: More and more companies are hiring Rust developers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;pitfalls-on-the-learning-path&#34;&gt;Pitfalls on the Learning Path&lt;/h2&gt;
+&lt;h3 id=&#34;1-ownership&#34;&gt;1. Ownership&lt;/h3&gt;
+&lt;p&gt;This is Rust&amp;rsquo;s most unique concept and the biggest barrier.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>三入三废的Rust无限入门</title>
+      <link>http://localhost:1313/posts/three-times-rust-learning-copy-10/</link>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/three-times-rust-learning-copy-10/</guid>
+      <description>&lt;h1 id=&#34;三入三废的rust无限入门&#34;&gt;三入三废的Rust无限入门&lt;/h1&gt;
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;Rust 作为一门现代系统编程语言，以其内存安全性和高性能著称。然而，其陡峭的学习曲线让不少人望而却步。本文记录了我多次入门又放弃的经历，以及最新一次尝试的收获。&lt;/p&gt;
+&lt;h2 id=&#34;为什么想学-rust&#34;&gt;为什么想学 Rust？&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;性能与安全&lt;/strong&gt;：无需垃圾回收的内存安全&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;现代工具链&lt;/strong&gt;：Cargo、rustfmt、clippy 等工具非常成熟&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;社区活跃&lt;/strong&gt;：crates.io 生态丰富&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;就业前景&lt;/strong&gt;：越来越多的公司在招聘 Rust 开发者&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;入门路上的坑&#34;&gt;入门路上的坑&lt;/h2&gt;
+&lt;h3 id=&#34;1-所有权ownership概念&#34;&gt;1. 所有权（Ownership）概念&lt;/h3&gt;
+&lt;p&gt;这是 Rust 最独特的概念，也是最大的门槛。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; s1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; String::from(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hello&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; s2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; s1; &lt;span style=&#34;color:#75715e&#34;&gt;// s1 在这里被&amp;#34;移动&amp;#34;了
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// println!(&amp;#34;{}&amp;#34;, s1); // 编译错误！
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2-生命周期lifetime&#34;&gt;2. 生命周期（Lifetime）&lt;/h3&gt;
+&lt;p&gt;生命周期标注是另一个难点，尤其在引用和结构体结合时。&lt;/p&gt;
+&lt;h3 id=&#34;3-借用规则&#34;&gt;3. 借用规则&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;一个可变引用 XOR 多个不可变引用&lt;/li&gt;
+&lt;li&gt;引用必须始终有效&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;学习资源推荐&#34;&gt;学习资源推荐&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;The Rust Book&lt;/strong&gt; - 官方入门书籍&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rust By Example&lt;/strong&gt; - 通过实例学习&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rustlings&lt;/strong&gt; - 交互式练习&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Exercism Rust Track&lt;/strong&gt; - 练习题&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;这次能坚持多久&#34;&gt;这次能坚持多久？&lt;/h2&gt;
+&lt;p&gt;立个 flag，希望这次能真正掌握 Rust 的核心概念。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;未完待续&amp;hellip;&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>三入三废的Rust无限入门</title>
+      <link>http://localhost:1313/posts/three-times-rust-learning-copy-2/</link>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/three-times-rust-learning-copy-2/</guid>
+      <description>&lt;h1 id=&#34;三入三废的rust无限入门&#34;&gt;三入三废的Rust无限入门&lt;/h1&gt;
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;Rust 作为一门现代系统编程语言，以其内存安全性和高性能著称。然而，其陡峭的学习曲线让不少人望而却步。本文记录了我多次入门又放弃的经历，以及最新一次尝试的收获。&lt;/p&gt;
+&lt;h2 id=&#34;为什么想学-rust&#34;&gt;为什么想学 Rust？&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;性能与安全&lt;/strong&gt;：无需垃圾回收的内存安全&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;现代工具链&lt;/strong&gt;：Cargo、rustfmt、clippy 等工具非常成熟&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;社区活跃&lt;/strong&gt;：crates.io 生态丰富&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;就业前景&lt;/strong&gt;：越来越多的公司在招聘 Rust 开发者&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;入门路上的坑&#34;&gt;入门路上的坑&lt;/h2&gt;
+&lt;h3 id=&#34;1-所有权ownership概念&#34;&gt;1. 所有权（Ownership）概念&lt;/h3&gt;
+&lt;p&gt;这是 Rust 最独特的概念，也是最大的门槛。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; s1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; String::from(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hello&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; s2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; s1; &lt;span style=&#34;color:#75715e&#34;&gt;// s1 在这里被&amp;#34;移动&amp;#34;了
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// println!(&amp;#34;{}&amp;#34;, s1); // 编译错误！
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2-生命周期lifetime&#34;&gt;2. 生命周期（Lifetime）&lt;/h3&gt;
+&lt;p&gt;生命周期标注是另一个难点，尤其在引用和结构体结合时。&lt;/p&gt;
+&lt;h3 id=&#34;3-借用规则&#34;&gt;3. 借用规则&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;一个可变引用 XOR 多个不可变引用&lt;/li&gt;
+&lt;li&gt;引用必须始终有效&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;学习资源推荐&#34;&gt;学习资源推荐&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;The Rust Book&lt;/strong&gt; - 官方入门书籍&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rust By Example&lt;/strong&gt; - 通过实例学习&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rustlings&lt;/strong&gt; - 交互式练习&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Exercism Rust Track&lt;/strong&gt; - 练习题&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;这次能坚持多久&#34;&gt;这次能坚持多久？&lt;/h2&gt;
+&lt;p&gt;立个 flag，希望这次能真正掌握 Rust 的核心概念。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;未完待续&amp;hellip;&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>三入三废的Rust无限入门</title>
+      <link>http://localhost:1313/posts/three-times-rust-learning-copy-3/</link>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/three-times-rust-learning-copy-3/</guid>
+      <description>&lt;h1 id=&#34;三入三废的rust无限入门&#34;&gt;三入三废的Rust无限入门&lt;/h1&gt;
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;Rust 作为一门现代系统编程语言，以其内存安全性和高性能著称。然而，其陡峭的学习曲线让不少人望而却步。本文记录了我多次入门又放弃的经历，以及最新一次尝试的收获。&lt;/p&gt;
+&lt;h2 id=&#34;为什么想学-rust&#34;&gt;为什么想学 Rust？&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;性能与安全&lt;/strong&gt;：无需垃圾回收的内存安全&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;现代工具链&lt;/strong&gt;：Cargo、rustfmt、clippy 等工具非常成熟&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;社区活跃&lt;/strong&gt;：crates.io 生态丰富&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;就业前景&lt;/strong&gt;：越来越多的公司在招聘 Rust 开发者&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;入门路上的坑&#34;&gt;入门路上的坑&lt;/h2&gt;
+&lt;h3 id=&#34;1-所有权ownership概念&#34;&gt;1. 所有权（Ownership）概念&lt;/h3&gt;
+&lt;p&gt;这是 Rust 最独特的概念，也是最大的门槛。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; s1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; String::from(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hello&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; s2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; s1; &lt;span style=&#34;color:#75715e&#34;&gt;// s1 在这里被&amp;#34;移动&amp;#34;了
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// println!(&amp;#34;{}&amp;#34;, s1); // 编译错误！
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2-生命周期lifetime&#34;&gt;2. 生命周期（Lifetime）&lt;/h3&gt;
+&lt;p&gt;生命周期标注是另一个难点，尤其在引用和结构体结合时。&lt;/p&gt;
+&lt;h3 id=&#34;3-借用规则&#34;&gt;3. 借用规则&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;一个可变引用 XOR 多个不可变引用&lt;/li&gt;
+&lt;li&gt;引用必须始终有效&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;学习资源推荐&#34;&gt;学习资源推荐&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;The Rust Book&lt;/strong&gt; - 官方入门书籍&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rust By Example&lt;/strong&gt; - 通过实例学习&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rustlings&lt;/strong&gt; - 交互式练习&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Exercism Rust Track&lt;/strong&gt; - 练习题&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;这次能坚持多久&#34;&gt;这次能坚持多久？&lt;/h2&gt;
+&lt;p&gt;立个 flag，希望这次能真正掌握 Rust 的核心概念。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;未完待续&amp;hellip;&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>三入三废的Rust无限入门</title>
+      <link>http://localhost:1313/posts/three-times-rust-learning-copy-4/</link>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/three-times-rust-learning-copy-4/</guid>
+      <description>&lt;h1 id=&#34;三入三废的rust无限入门&#34;&gt;三入三废的Rust无限入门&lt;/h1&gt;
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;Rust 作为一门现代系统编程语言，以其内存安全性和高性能著称。然而，其陡峭的学习曲线让不少人望而却步。本文记录了我多次入门又放弃的经历，以及最新一次尝试的收获。&lt;/p&gt;
+&lt;h2 id=&#34;为什么想学-rust&#34;&gt;为什么想学 Rust？&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;性能与安全&lt;/strong&gt;：无需垃圾回收的内存安全&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;现代工具链&lt;/strong&gt;：Cargo、rustfmt、clippy 等工具非常成熟&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;社区活跃&lt;/strong&gt;：crates.io 生态丰富&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;就业前景&lt;/strong&gt;：越来越多的公司在招聘 Rust 开发者&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;入门路上的坑&#34;&gt;入门路上的坑&lt;/h2&gt;
+&lt;h3 id=&#34;1-所有权ownership概念&#34;&gt;1. 所有权（Ownership）概念&lt;/h3&gt;
+&lt;p&gt;这是 Rust 最独特的概念，也是最大的门槛。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; s1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; String::from(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hello&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; s2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; s1; &lt;span style=&#34;color:#75715e&#34;&gt;// s1 在这里被&amp;#34;移动&amp;#34;了
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// println!(&amp;#34;{}&amp;#34;, s1); // 编译错误！
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2-生命周期lifetime&#34;&gt;2. 生命周期（Lifetime）&lt;/h3&gt;
+&lt;p&gt;生命周期标注是另一个难点，尤其在引用和结构体结合时。&lt;/p&gt;
+&lt;h3 id=&#34;3-借用规则&#34;&gt;3. 借用规则&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;一个可变引用 XOR 多个不可变引用&lt;/li&gt;
+&lt;li&gt;引用必须始终有效&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;学习资源推荐&#34;&gt;学习资源推荐&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;The Rust Book&lt;/strong&gt; - 官方入门书籍&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rust By Example&lt;/strong&gt; - 通过实例学习&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rustlings&lt;/strong&gt; - 交互式练习&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Exercism Rust Track&lt;/strong&gt; - 练习题&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;这次能坚持多久&#34;&gt;这次能坚持多久？&lt;/h2&gt;
+&lt;p&gt;立个 flag，希望这次能真正掌握 Rust 的核心概念。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;未完待续&amp;hellip;&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>三入三废的Rust无限入门</title>
+      <link>http://localhost:1313/posts/three-times-rust-learning-copy-5/</link>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/three-times-rust-learning-copy-5/</guid>
+      <description>&lt;h1 id=&#34;三入三废的rust无限入门&#34;&gt;三入三废的Rust无限入门&lt;/h1&gt;
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;Rust 作为一门现代系统编程语言，以其内存安全性和高性能著称。然而，其陡峭的学习曲线让不少人望而却步。本文记录了我多次入门又放弃的经历，以及最新一次尝试的收获。&lt;/p&gt;
+&lt;h2 id=&#34;为什么想学-rust&#34;&gt;为什么想学 Rust？&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;性能与安全&lt;/strong&gt;：无需垃圾回收的内存安全&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;现代工具链&lt;/strong&gt;：Cargo、rustfmt、clippy 等工具非常成熟&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;社区活跃&lt;/strong&gt;：crates.io 生态丰富&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;就业前景&lt;/strong&gt;：越来越多的公司在招聘 Rust 开发者&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;入门路上的坑&#34;&gt;入门路上的坑&lt;/h2&gt;
+&lt;h3 id=&#34;1-所有权ownership概念&#34;&gt;1. 所有权（Ownership）概念&lt;/h3&gt;
+&lt;p&gt;这是 Rust 最独特的概念，也是最大的门槛。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; s1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; String::from(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hello&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; s2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; s1; &lt;span style=&#34;color:#75715e&#34;&gt;// s1 在这里被&amp;#34;移动&amp;#34;了
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// println!(&amp;#34;{}&amp;#34;, s1); // 编译错误！
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2-生命周期lifetime&#34;&gt;2. 生命周期（Lifetime）&lt;/h3&gt;
+&lt;p&gt;生命周期标注是另一个难点，尤其在引用和结构体结合时。&lt;/p&gt;
+&lt;h3 id=&#34;3-借用规则&#34;&gt;3. 借用规则&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;一个可变引用 XOR 多个不可变引用&lt;/li&gt;
+&lt;li&gt;引用必须始终有效&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;学习资源推荐&#34;&gt;学习资源推荐&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;The Rust Book&lt;/strong&gt; - 官方入门书籍&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rust By Example&lt;/strong&gt; - 通过实例学习&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rustlings&lt;/strong&gt; - 交互式练习&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Exercism Rust Track&lt;/strong&gt; - 练习题&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;这次能坚持多久&#34;&gt;这次能坚持多久？&lt;/h2&gt;
+&lt;p&gt;立个 flag，希望这次能真正掌握 Rust 的核心概念。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;未完待续&amp;hellip;&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>三入三废的Rust无限入门</title>
+      <link>http://localhost:1313/posts/three-times-rust-learning-copy-6/</link>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/three-times-rust-learning-copy-6/</guid>
+      <description>&lt;h1 id=&#34;三入三废的rust无限入门&#34;&gt;三入三废的Rust无限入门&lt;/h1&gt;
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;Rust 作为一门现代系统编程语言，以其内存安全性和高性能著称。然而，其陡峭的学习曲线让不少人望而却步。本文记录了我多次入门又放弃的经历，以及最新一次尝试的收获。&lt;/p&gt;
+&lt;h2 id=&#34;为什么想学-rust&#34;&gt;为什么想学 Rust？&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;性能与安全&lt;/strong&gt;：无需垃圾回收的内存安全&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;现代工具链&lt;/strong&gt;：Cargo、rustfmt、clippy 等工具非常成熟&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;社区活跃&lt;/strong&gt;：crates.io 生态丰富&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;就业前景&lt;/strong&gt;：越来越多的公司在招聘 Rust 开发者&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;入门路上的坑&#34;&gt;入门路上的坑&lt;/h2&gt;
+&lt;h3 id=&#34;1-所有权ownership概念&#34;&gt;1. 所有权（Ownership）概念&lt;/h3&gt;
+&lt;p&gt;这是 Rust 最独特的概念，也是最大的门槛。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; s1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; String::from(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hello&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; s2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; s1; &lt;span style=&#34;color:#75715e&#34;&gt;// s1 在这里被&amp;#34;移动&amp;#34;了
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// println!(&amp;#34;{}&amp;#34;, s1); // 编译错误！
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2-生命周期lifetime&#34;&gt;2. 生命周期（Lifetime）&lt;/h3&gt;
+&lt;p&gt;生命周期标注是另一个难点，尤其在引用和结构体结合时。&lt;/p&gt;
+&lt;h3 id=&#34;3-借用规则&#34;&gt;3. 借用规则&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;一个可变引用 XOR 多个不可变引用&lt;/li&gt;
+&lt;li&gt;引用必须始终有效&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;学习资源推荐&#34;&gt;学习资源推荐&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;The Rust Book&lt;/strong&gt; - 官方入门书籍&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rust By Example&lt;/strong&gt; - 通过实例学习&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rustlings&lt;/strong&gt; - 交互式练习&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Exercism Rust Track&lt;/strong&gt; - 练习题&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;这次能坚持多久&#34;&gt;这次能坚持多久？&lt;/h2&gt;
+&lt;p&gt;立个 flag，希望这次能真正掌握 Rust 的核心概念。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;未完待续&amp;hellip;&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>三入三废的Rust无限入门</title>
+      <link>http://localhost:1313/posts/three-times-rust-learning-copy-7/</link>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/three-times-rust-learning-copy-7/</guid>
+      <description>&lt;h1 id=&#34;三入三废的rust无限入门&#34;&gt;三入三废的Rust无限入门&lt;/h1&gt;
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;Rust 作为一门现代系统编程语言，以其内存安全性和高性能著称。然而，其陡峭的学习曲线让不少人望而却步。本文记录了我多次入门又放弃的经历，以及最新一次尝试的收获。&lt;/p&gt;
+&lt;h2 id=&#34;为什么想学-rust&#34;&gt;为什么想学 Rust？&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;性能与安全&lt;/strong&gt;：无需垃圾回收的内存安全&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;现代工具链&lt;/strong&gt;：Cargo、rustfmt、clippy 等工具非常成熟&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;社区活跃&lt;/strong&gt;：crates.io 生态丰富&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;就业前景&lt;/strong&gt;：越来越多的公司在招聘 Rust 开发者&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;入门路上的坑&#34;&gt;入门路上的坑&lt;/h2&gt;
+&lt;h3 id=&#34;1-所有权ownership概念&#34;&gt;1. 所有权（Ownership）概念&lt;/h3&gt;
+&lt;p&gt;这是 Rust 最独特的概念，也是最大的门槛。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; s1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; String::from(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hello&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; s2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; s1; &lt;span style=&#34;color:#75715e&#34;&gt;// s1 在这里被&amp;#34;移动&amp;#34;了
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// println!(&amp;#34;{}&amp;#34;, s1); // 编译错误！
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2-生命周期lifetime&#34;&gt;2. 生命周期（Lifetime）&lt;/h3&gt;
+&lt;p&gt;生命周期标注是另一个难点，尤其在引用和结构体结合时。&lt;/p&gt;
+&lt;h3 id=&#34;3-借用规则&#34;&gt;3. 借用规则&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;一个可变引用 XOR 多个不可变引用&lt;/li&gt;
+&lt;li&gt;引用必须始终有效&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;学习资源推荐&#34;&gt;学习资源推荐&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;The Rust Book&lt;/strong&gt; - 官方入门书籍&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rust By Example&lt;/strong&gt; - 通过实例学习&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rustlings&lt;/strong&gt; - 交互式练习&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Exercism Rust Track&lt;/strong&gt; - 练习题&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;这次能坚持多久&#34;&gt;这次能坚持多久？&lt;/h2&gt;
+&lt;p&gt;立个 flag，希望这次能真正掌握 Rust 的核心概念。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;未完待续&amp;hellip;&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>三入三废的Rust无限入门</title>
+      <link>http://localhost:1313/posts/three-times-rust-learning-copy-8/</link>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/three-times-rust-learning-copy-8/</guid>
+      <description>&lt;h1 id=&#34;三入三废的rust无限入门&#34;&gt;三入三废的Rust无限入门&lt;/h1&gt;
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;Rust 作为一门现代系统编程语言，以其内存安全性和高性能著称。然而，其陡峭的学习曲线让不少人望而却步。本文记录了我多次入门又放弃的经历，以及最新一次尝试的收获。&lt;/p&gt;
+&lt;h2 id=&#34;为什么想学-rust&#34;&gt;为什么想学 Rust？&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;性能与安全&lt;/strong&gt;：无需垃圾回收的内存安全&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;现代工具链&lt;/strong&gt;：Cargo、rustfmt、clippy 等工具非常成熟&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;社区活跃&lt;/strong&gt;：crates.io 生态丰富&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;就业前景&lt;/strong&gt;：越来越多的公司在招聘 Rust 开发者&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;入门路上的坑&#34;&gt;入门路上的坑&lt;/h2&gt;
+&lt;h3 id=&#34;1-所有权ownership概念&#34;&gt;1. 所有权（Ownership）概念&lt;/h3&gt;
+&lt;p&gt;这是 Rust 最独特的概念，也是最大的门槛。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; s1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; String::from(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hello&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; s2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; s1; &lt;span style=&#34;color:#75715e&#34;&gt;// s1 在这里被&amp;#34;移动&amp;#34;了
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// println!(&amp;#34;{}&amp;#34;, s1); // 编译错误！
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2-生命周期lifetime&#34;&gt;2. 生命周期（Lifetime）&lt;/h3&gt;
+&lt;p&gt;生命周期标注是另一个难点，尤其在引用和结构体结合时。&lt;/p&gt;
+&lt;h3 id=&#34;3-借用规则&#34;&gt;3. 借用规则&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;一个可变引用 XOR 多个不可变引用&lt;/li&gt;
+&lt;li&gt;引用必须始终有效&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;学习资源推荐&#34;&gt;学习资源推荐&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;The Rust Book&lt;/strong&gt; - 官方入门书籍&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rust By Example&lt;/strong&gt; - 通过实例学习&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rustlings&lt;/strong&gt; - 交互式练习&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Exercism Rust Track&lt;/strong&gt; - 练习题&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;这次能坚持多久&#34;&gt;这次能坚持多久？&lt;/h2&gt;
+&lt;p&gt;立个 flag，希望这次能真正掌握 Rust 的核心概念。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;未完待续&amp;hellip;&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>三入三废的Rust无限入门</title>
+      <link>http://localhost:1313/posts/three-times-rust-learning-copy-9/</link>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/three-times-rust-learning-copy-9/</guid>
+      <description>&lt;h1 id=&#34;三入三废的rust无限入门&#34;&gt;三入三废的Rust无限入门&lt;/h1&gt;
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;Rust 作为一门现代系统编程语言，以其内存安全性和高性能著称。然而，其陡峭的学习曲线让不少人望而却步。本文记录了我多次入门又放弃的经历，以及最新一次尝试的收获。&lt;/p&gt;
+&lt;h2 id=&#34;为什么想学-rust&#34;&gt;为什么想学 Rust？&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;性能与安全&lt;/strong&gt;：无需垃圾回收的内存安全&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;现代工具链&lt;/strong&gt;：Cargo、rustfmt、clippy 等工具非常成熟&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;社区活跃&lt;/strong&gt;：crates.io 生态丰富&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;就业前景&lt;/strong&gt;：越来越多的公司在招聘 Rust 开发者&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;入门路上的坑&#34;&gt;入门路上的坑&lt;/h2&gt;
+&lt;h3 id=&#34;1-所有权ownership概念&#34;&gt;1. 所有权（Ownership）概念&lt;/h3&gt;
+&lt;p&gt;这是 Rust 最独特的概念，也是最大的门槛。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; s1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; String::from(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hello&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; s2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; s1; &lt;span style=&#34;color:#75715e&#34;&gt;// s1 在这里被&amp;#34;移动&amp;#34;了
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// println!(&amp;#34;{}&amp;#34;, s1); // 编译错误！
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2-生命周期lifetime&#34;&gt;2. 生命周期（Lifetime）&lt;/h3&gt;
+&lt;p&gt;生命周期标注是另一个难点，尤其在引用和结构体结合时。&lt;/p&gt;
+&lt;h3 id=&#34;3-借用规则&#34;&gt;3. 借用规则&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;一个可变引用 XOR 多个不可变引用&lt;/li&gt;
+&lt;li&gt;引用必须始终有效&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;学习资源推荐&#34;&gt;学习资源推荐&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;The Rust Book&lt;/strong&gt; - 官方入门书籍&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rust By Example&lt;/strong&gt; - 通过实例学习&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rustlings&lt;/strong&gt; - 交互式练习&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Exercism Rust Track&lt;/strong&gt; - 练习题&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;这次能坚持多久&#34;&gt;这次能坚持多久？&lt;/h2&gt;
+&lt;p&gt;立个 flag，希望这次能真正掌握 Rust 的核心概念。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;未完待续&amp;hellip;&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>三入三废的Rust无限入门</title>
+      <link>http://localhost:1313/posts/three-times-rust-learning-copy/</link>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/three-times-rust-learning-copy/</guid>
+      <description>&lt;h1 id=&#34;三入三废的rust无限入门&#34;&gt;三入三废的Rust无限入门&lt;/h1&gt;
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;Rust 作为一门现代系统编程语言，以其内存安全性和高性能著称。然而，其陡峭的学习曲线让不少人望而却步。本文记录了我多次入门又放弃的经历，以及最新一次尝试的收获。&lt;/p&gt;
+&lt;h2 id=&#34;为什么想学-rust&#34;&gt;为什么想学 Rust？&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;性能与安全&lt;/strong&gt;：无需垃圾回收的内存安全&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;现代工具链&lt;/strong&gt;：Cargo、rustfmt、clippy 等工具非常成熟&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;社区活跃&lt;/strong&gt;：crates.io 生态丰富&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;就业前景&lt;/strong&gt;：越来越多的公司在招聘 Rust 开发者&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;入门路上的坑&#34;&gt;入门路上的坑&lt;/h2&gt;
+&lt;h3 id=&#34;1-所有权ownership概念&#34;&gt;1. 所有权（Ownership）概念&lt;/h3&gt;
+&lt;p&gt;这是 Rust 最独特的概念，也是最大的门槛。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; s1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; String::from(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hello&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; s2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; s1; &lt;span style=&#34;color:#75715e&#34;&gt;// s1 在这里被&amp;#34;移动&amp;#34;了
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// println!(&amp;#34;{}&amp;#34;, s1); // 编译错误！
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2-生命周期lifetime&#34;&gt;2. 生命周期（Lifetime）&lt;/h3&gt;
+&lt;p&gt;生命周期标注是另一个难点，尤其在引用和结构体结合时。&lt;/p&gt;
+&lt;h3 id=&#34;3-借用规则&#34;&gt;3. 借用规则&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;一个可变引用 XOR 多个不可变引用&lt;/li&gt;
+&lt;li&gt;引用必须始终有效&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;学习资源推荐&#34;&gt;学习资源推荐&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;The Rust Book&lt;/strong&gt; - 官方入门书籍&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rust By Example&lt;/strong&gt; - 通过实例学习&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rustlings&lt;/strong&gt; - 交互式练习&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Exercism Rust Track&lt;/strong&gt; - 练习题&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;这次能坚持多久&#34;&gt;这次能坚持多久？&lt;/h2&gt;
+&lt;p&gt;立个 flag，希望这次能真正掌握 Rust 的核心概念。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;未完待续&amp;hellip;&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>三入三废的Rust无限入门</title>
+      <link>http://localhost:1313/posts/three-times-rust-learning/</link>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/three-times-rust-learning/</guid>
+      <description>&lt;h1 id=&#34;三入三废的rust无限入门&#34;&gt;三入三废的Rust无限入门&lt;/h1&gt;
+&lt;h2 id=&#34;前言&#34;&gt;前言&lt;/h2&gt;
+&lt;p&gt;Rust 作为一门现代系统编程语言，以其内存安全性和高性能著称。然而，其陡峭的学习曲线让不少人望而却步。本文记录了我多次入门又放弃的经历，以及最新一次尝试的收获。&lt;/p&gt;
+&lt;h2 id=&#34;为什么想学-rust&#34;&gt;为什么想学 Rust？&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;性能与安全&lt;/strong&gt;：无需垃圾回收的内存安全&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;现代工具链&lt;/strong&gt;：Cargo、rustfmt、clippy 等工具非常成熟&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;社区活跃&lt;/strong&gt;：crates.io 生态丰富&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;就业前景&lt;/strong&gt;：越来越多的公司在招聘 Rust 开发者&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;入门路上的坑&#34;&gt;入门路上的坑&lt;/h2&gt;
+&lt;h3 id=&#34;1-所有权ownership概念&#34;&gt;1. 所有权（Ownership）概念&lt;/h3&gt;
+&lt;p&gt;这是 Rust 最独特的概念，也是最大的门槛。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;&#34;&gt;&lt;code class=&#34;language-rust&#34; data-lang=&#34;rust&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;fn&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;() {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; s1 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; String::from(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;hello&amp;#34;&lt;/span&gt;);
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#66d9ef&#34;&gt;let&lt;/span&gt; s2 &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; s1; &lt;span style=&#34;color:#75715e&#34;&gt;// s1 在这里被&amp;#34;移动&amp;#34;了
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;    &lt;span style=&#34;color:#75715e&#34;&gt;// println!(&amp;#34;{}&amp;#34;, s1); // 编译错误！
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;2-生命周期lifetime&#34;&gt;2. 生命周期（Lifetime）&lt;/h3&gt;
+&lt;p&gt;生命周期标注是另一个难点，尤其在引用和结构体结合时。&lt;/p&gt;
+&lt;h3 id=&#34;3-借用规则&#34;&gt;3. 借用规则&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;一个可变引用 XOR 多个不可变引用&lt;/li&gt;
+&lt;li&gt;引用必须始终有效&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;学习资源推荐&#34;&gt;学习资源推荐&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;The Rust Book&lt;/strong&gt; - 官方入门书籍&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rust By Example&lt;/strong&gt; - 通过实例学习&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rustlings&lt;/strong&gt; - 交互式练习&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Exercism Rust Track&lt;/strong&gt; - 练习题&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;这次能坚持多久&#34;&gt;这次能坚持多久？&lt;/h2&gt;
+&lt;p&gt;立个 flag，希望这次能真正掌握 Rust 的核心概念。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;em&gt;未完待续&amp;hellip;&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

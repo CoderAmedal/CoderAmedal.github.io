@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Programming on BIT &amp; 42</title>
+    <link>http://localhost:1313/tags/programming/</link>
+    <description>Recent content in Programming on BIT &amp; 42</description>
+    <generator>Hugo -- 0.160.1</generator>
+    <language>zh-CN</language>
+    <copyright>2025 Bit &amp;amp; 42. 这是生命、宇宙以及一切的终极版权声明</copyright>
+    <lastBuildDate>Tue, 14 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/programming/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rust Unlimited Intro - Three Times Failed</title>
+      <link>http://localhost:1313/en/posts/three-times-rust-learning/</link>
+      <pubDate>Tue, 14 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/en/posts/three-times-rust-learning/</guid>
+      <description>&lt;h1 id=&#34;rust-unlimited-intro---three-times-failed&#34;&gt;Rust Unlimited Intro - Three Times Failed&lt;/h1&gt;
+&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;Rust, as a modern systems programming language, is renowned for its memory safety and high performance. However, its steep learning curve has discouraged many. This article documents my multiple attempts to learn and abandon Rust, as well as the gains from my latest attempt.&lt;/p&gt;
+&lt;h2 id=&#34;why-learn-rust&#34;&gt;Why Learn Rust?&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Performance &amp;amp; Safety&lt;/strong&gt;: Memory safety without garbage collection&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Modern Toolchain&lt;/strong&gt;: Cargo, rustfmt, clippy and other tools are very mature&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Active Community&lt;/strong&gt;: Rich ecosystem on crates.io&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Job Prospects&lt;/strong&gt;: More and more companies are hiring Rust developers&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;pitfalls-on-the-learning-path&#34;&gt;Pitfalls on the Learning Path&lt;/h2&gt;
+&lt;h3 id=&#34;1-ownership&#34;&gt;1. Ownership&lt;/h3&gt;
+&lt;p&gt;This is Rust&amp;rsquo;s most unique concept and the biggest barrier.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
