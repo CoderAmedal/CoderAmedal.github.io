@@ -1,58 +1,7 @@
 +++
 date = '2026-04-14'
-draft = false
-title = '三入三废的Rust无限入门'
-categories = ['学习笔记']
-tags = ['Rust', '编程学习']
+title = '三入三废的Rust的入门'
+categories = ['Notes']
+tags = ['Rust', 'Programming']
 +++
 
-# 三入三废的Rust无限入门
-
-## 前言
-
-Rust 作为一门现代系统编程语言，以其内存安全性和高性能著称。然而，其陡峭的学习曲线让不少人望而却步。本文记录了我多次入门又放弃的经历，以及最新一次尝试的收获。
-
-## 为什么想学 Rust？
-
-- **性能与安全**：无需垃圾回收的内存安全
-- **现代工具链**：Cargo、rustfmt、clippy 等工具非常成熟
-- **社区活跃**：crates.io 生态丰富
-- **就业前景**：越来越多的公司在招聘 Rust 开发者
-
-## 入门路上的坑
-
-### 1. 所有权（Ownership）概念
-
-这是 Rust 最独特的概念，也是最大的门槛。
-
-```rust
-fn main() {
-    let s1 = String::from("hello");
-    let s2 = s1; // s1 在这里被"移动"了
-    // println!("{}", s1); // 编译错误！
-}
-```
-
-### 2. 生命周期（Lifetime）
-
-生命周期标注是另一个难点，尤其在引用和结构体结合时。
-
-### 3. 借用规则
-
-- 一个可变引用 XOR 多个不可变引用
-- 引用必须始终有效
-
-## 学习资源推荐
-
-1. **The Rust Book** - 官方入门书籍
-2. **Rust By Example** - 通过实例学习
-3. **Rustlings** - 交互式练习
-4. **Exercism Rust Track** - 练习题
-
-## 这次能坚持多久？
-
-立个 flag，希望这次能真正掌握 Rust 的核心概念。
-
----
-
-*未完待续...*
