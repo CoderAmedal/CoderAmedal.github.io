@@ -1,0 +1,74 @@
+# Configuration the site theme
+theme: [PaperMod]
+
+# Site configuration
+baseURL: "https://CoderAmedal.github.io/"
+title: "BIT & 42"
+languageCode: "zh-CN"
+copyright: "© 2025 Bit & 42. 这是生命、宇宙以及一切的终极版权声明"
+
+# Multilanguage configuration
+defaultContentLanguage: "zh"
+defaultContentLanguageInSubdir: false
+languages:
+  zh:
+    languageName: "中文"
+    weight: 1
+    taxonomies:
+      category: categories
+      tag: tags
+      series: series
+    menu:
+      main:
+        - name: 所有文章
+          url: archives
+          weight: 5
+        - name: 搜索
+          url: search/
+          weight: 10
+        - name: 标签
+          url: tags/
+          weight: 10
+        - name: Github
+          url: https://github.com/CoderAmedal/
+  en:
+    languageName: "English"
+    weight: 2
+    taxonomies:
+      category: categories
+      tag: tags
+      series: series
+    menu:
+      main:
+        - name: Archive
+          url: archives
+          weight: 5
+        - name: Search
+          url: search/
+          weight: 10
+        - name: Tags
+          url: tags/
+          weight: 10
+        - name: WiKi
+          url: https://github.com/adityatelange/hugo-PaperMod/wiki/
+
+# Pagination settings
+pagination:
+  disableAliases: false
+  pagerSize: 5
+  
+
+params:
+  assets:
+    disableFingerprinting: true
+  author: "CoderAmedal"
+  authorURL: "/"
+
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+build:
+  writeStats: false
