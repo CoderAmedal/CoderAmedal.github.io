@@ -10,49 +10,76 @@ tags = ['Rust', 'Programming']
 
 ## Introduction
 
-Rust, as a modern systems programming language, is renowned for its memory safety and high performance. However, its steep learning curve has discouraged many. This article documents my multiple attempts to learn and abandon Rust, as well as the gains from my latest attempt.
+Rust has topped Stack Overflow's "most loved language" survey for years, but its learning curve is equally famous. I started and quit learning Rust three times since 2023 before finally getting past the initial barrier. This is the story of that journey.
 
 ## Why Learn Rust?
 
-- **Performance & Safety**: Memory safety without garbage collection
-- **Modern Toolchain**: Cargo, rustfmt, clippy and other tools are very mature
-- **Active Community**: Rich ecosystem on crates.io
-- **Job Prospects**: More and more companies are hiring Rust developers
+- **Performance & Safety**: Memory safety without garbage collection — no more GC pause nightmares or segfaults
+- **Modern Toolchain**: Cargo, rustfmt, and Clippy create a seamless build/test/lint experience that makes C++ tooling feel archaic
+- **Type System That Catches Bugs Early**: The compiler catches an incredible amount of errors before runtime — fewer 3 AM on-call wake-ups
+- **Growing Industry Adoption**: From Linux kernel modules to cloud infrastructure (AWS, Cloudflare), Rust is becoming the standard for systems-level work
 
-## Pitfalls on the Learning Path
+## Three Attempts, Three Failures
 
-### 1. Ownership
+### Attempt 1: Ownership sent me running
 
-This is Rust's most unique concept and the biggest barrier.
+The first three chapters of The Rust Book felt comfortable — modern syntax, immutability by default, elegant pattern matching. Then Chapter 4 on Ownership hit:
 
 ```rust
 fn main() {
     let s1 = String::from("hello");
-    let s2 = s1; // s1 is "moved" here
-    // println!("{}", s1); // Compile error!
+    let s2 = s1; // s1 is *moved* here
+    // println!("{}", s1); // Compile error — s1 is no longer valid!
 }
 ```
 
-### 2. Lifetime
+I genuinely couldn't understand why a simple assignment would invalidate the original variable. I didn't yet grasp that Rust was enforcing single-ownership at compile time to eliminate use-after-free. I closed the book.
 
-Lifetime annotations are another difficulty, especially when combining references with structs.
+### Attempt 2: Lifetimes broke me
 
-### 3. Borrowing Rules
+A few months later I tried again, grinding through ownership. Then lifetimes appeared:
 
-- One mutable reference XOR multiple immutable references
-- References must always be valid
+```rust
+fn longest<'a>(x: &'a str, y: &'a str) -> &'a str {
+    if x.len() > y.len() { x } else { y }
+}
+```
 
-## Recommended Learning Resources
+The `'a` syntax felt like fighting the compiler rather than writing code. In hindsight, the borrow checker simply needs explicit annotations when it can't infer which input the return value ties to — but at the time, it just felt hostile.
 
-1. **The Rust Book** - Official beginner book
-2. **Rust By Example** - Learn through examples
-3. **Rustlings** - Interactive exercises
-4. **Exercism Rust Track** - Practice problems
+### Attempt 3: What finally worked
 
-## How Long Can I Stick With It This Time?
+On the third attempt, I changed strategy: **stop trying to understand everything upfront. Just write code that works.**
 
-Setting a flag, I hope this time I can truly master Rust's core concepts.
+- Use `.clone()` liberally to get past ownership errors — ignore the "you're wasting memory" guilt
+- Start with small CLI tools, not performance-critical libraries
+- Use owned types (`String` instead of `&str`) in structs to avoid lifetime headaches initially
+
+After writing a few hundred lines of working Rust, I went back and re-read the ownership and borrowing chapters. Suddenly they made sense: **the compiler isn't punishing you — it's managing memory on your behalf at compile time.**
+
+## The Three Core Rules
+
+Once it clicked, Rust's constraints distill down to three simple rules:
+
+1. **Each value has exactly one owner at a time**
+2. **At any given moment, you can have either one mutable reference OR any number of immutable references — never both**
+3. **References must always be valid (enforced by lifetimes)**
+
+Master these three and most compiler errors become self-explanatory.
+
+## Recommended Learning Path
+
+If you're starting out:
+
+1. **[The Rust Book](https://doc.rust-lang.org/book/)** — Chapters 1-6 are essential; the interactive code snippets in the browser are excellent
+2. **[Rustlings](https://github.com/rust-lang/rustlings)** — Make tests pass by fixing code; the most hands-on way to learn
+3. **[Rust By Example](https://doc.rust-lang.org/stable/rust-by-example/)** — Learn syntax and standard library through annotated examples
+4. **[Exercism Rust Track](https://exercism.org/tracks/rust)** — Community-reviewed exercises with mentor feedback
+
+## Will This Time Stick?
+
+I'm setting a concrete goal: finish the entire Rust Book and build at least two small tools I'd actually use. The learning curve is real, but crossing it gives you something rare — genuine confidence that your code won't blow up in production due to memory bugs.
 
 ---
 
-*To be continued...*
+*Learning in progress — more notes to come...*
