@@ -32,8 +32,10 @@ languages:
         - name: Github
           url: https://github.com/CoderAmedal/
         - name: 简历
-          url: resume/
+          url: /resume/软件开发工程师-袁小昆.pdf
           weight: 15
+          params:
+            target: _blank
   en:
     languageName: "English"
     weight: 2
@@ -55,8 +57,10 @@ languages:
         - name: WiKi
           url: https://github.com/adityatelange/hugo-PaperMod/wiki/
         - name: Resume
-          url: resume/
+          url: /resume/软件开发工程师-袁小昆.pdf
           weight: 15
+          params:
+            target: _blank
 
 # Pagination settings
 pagination:
