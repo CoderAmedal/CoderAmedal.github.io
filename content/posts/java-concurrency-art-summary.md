@@ -1,5 +1,5 @@
 +++
-date = '2024-03-23
+date = '2024-03-23'
 title = '《Java 并发编程的艺术》个人总结'
 categories = ['Notes']
 tags = ['Java', '并发编程']
